@@ -1,2 +1,2 @@
-# neo-Chat
+# neoChat
 A basic chat app 

@@ -1,0 +1,26 @@
+{
+  "name": "neo-chat",
+  "version": "1.0.0",
+  "description": "A simple chat app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mananag/neo-Chat.git"
+  },
+  "author": "Manna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mananag/neo-Chat/issues"
+  },
+  "homepage": "https://github.com/mananag/neo-Chat#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
