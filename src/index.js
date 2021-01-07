@@ -20,8 +20,18 @@ io.on('connection', (socket) => {
     socket.emit('message', 'Welcome!')
     socket.broadcast.emit('message', 'A new user has joined')
 
-    socket.on('sendMessage', (message) => {
+    socket.on('sendMessage', (message, callback) => {
         io.emit('message', message)
+        callback('Delivered')
+    })
+
+    socket.on('sendLocation', (coords) => {
+        // console.log(coords.latitude)
+        io.emit('message', `https://www.google.com/maps/search/?api=1&query=${coords.latitude},${coords.longitude}`)
+    })
+
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left!')
     })
 })
 
