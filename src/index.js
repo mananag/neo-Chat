@@ -8,11 +8,15 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 const port = process.env.PORT || 3000
-const publicDirectoryPath = path.join(__dirname , '../public')
+const publicDirectoryPath = path.join(__dirname, '../public')
+
+
 
 app.use(express.static(publicDirectoryPath))
 
+
 let count = 0
+
 
 io.on('connection', (socket) => {
     console.log('New Web Socket Server')
@@ -25,15 +29,16 @@ io.on('connection', (socket) => {
         callback('Delivered')
     })
 
-    socket.on('sendLocation', (coords) => {
-        // console.log(coords.latitude)
+    socket.on('sendLocation', (coords, callback) => {
         io.emit('message', `https://www.google.com/maps/search/?api=1&query=${coords.latitude},${coords.longitude}`)
+        callback()
     })
 
     socket.on('disconnect', () => {
         io.emit('message', 'A user has left!')
     })
 })
+
 
 server.listen(port, () => {
     console.log(`Server is up on port ${port}!`)
