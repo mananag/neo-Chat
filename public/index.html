@@ -23,7 +23,17 @@ Chat App
 <script id="messageTemplate" type="x-tmpl-mustache">
     <div>
         <p>
-            {{message}}
+            {{createdAt}} - {{message}}
+        </p>
+    </div>
+</script>
+<script id="locationTemplate" type="x-tmpl-mustache">
+    <div>
+        <p>
+            {{createdAt}} - 
+            <a href={{location}}>
+                Current Location
+            </a>
         </p>
     </div>
 </script>

@@ -4,11 +4,26 @@ const socket = io()
 const messages = document.getElementById('messages')
 const messageTemplate = document.getElementById('messageTemplate').innerHTML
 
-
 // Socket message event
 socket.on('message', (message) => {
     console.log(message)
-    const html = Mustache.render(messageTemplate, {message})
+    const html = Mustache.render(messageTemplate, {
+        message : message.text,
+        createdAt : moment(message.createdAt).format('h:mm a')
+    })
+    messages.insertAdjacentHTML('beforeend', html)
+})
+
+
+const locationTemplate = document.getElementById('locationTemplate').innerHTML
+
+// Socket location event
+socket.on('location', (location) => {
+    console.log(location)
+    const html = Mustache.render(locationTemplate, {
+        location : location.text,
+        createdAt : moment(location.createdAt).format('h:mm a')
+    })
     messages.insertAdjacentHTML('beforeend', html)
 })
 
