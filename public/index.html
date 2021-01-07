@@ -2,11 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>neoChat</title>
+    <title>Chat App</title>
 </head>
 <body>
-    <h1>
-        Chat App
-    </h1>
+    Chat App
+    <button id="increment">+1</button>
+    <form>
+        <label>
+            <input type="text" name="message">
+        </label>
+        <input type="submit">
+    </form>
 </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/chat.js"></script>
 </html>
