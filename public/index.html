@@ -2,35 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chat App</title>
+    <title>Neo Chat</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="img/favicon.png">
 </head>
 <body>
-Chat App
-<div id="messages">
+    <div class="chat">
+        <div class="chatSidebar">
 
-</div>
-<button id="increment">+1</button>
-<form>
-    <label>
-        <input type="text" name="message" id="messageInput">
-    </label>
-    <input id="messageSubmit" type="submit">
-</form>
-<button id="send-location">
-    Send Location
-</button>
+        </div>
+        <div class="chatMain">
+            <div id="messages" class="chatMessages"></div>
+
+            <div class="compose">
+                <form>
+                    <input type="text" name="message" placeholder="Message" id="messageInput">
+                    <button id="messageSubmit" type="submit">
+                        Send
+                    </button>
+                </form>
+                <button id="send-location">
+                    Send Location
+                </button>
+            </div>
+        </div>
+    </div>
 </body>
 <script id="messageTemplate" type="x-tmpl-mustache">
-    <div>
+    <div class="message">
         <p>
-            {{createdAt}} - {{message}}
+            <span class="messageName">Manan </span>
+            <span class="messageMeta">{{createdAt}}</span>
+        </p>
+        <p>
+            {{message}}
         </p>
     </div>
 </script>
 <script id="locationTemplate" type="x-tmpl-mustache">
-    <div>
+    <div class="message">
         <p>
-            {{createdAt}} - 
+            <span class="messageName">Manan </span>
+            <span class="messageMeta">{{createdAt}}</span>
+        </p>
+        <p>
             <a href={{location}}>
                 Current Location
             </a>
