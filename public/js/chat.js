@@ -4,15 +4,31 @@ const socket = io()
 const messages = document.getElementById('messages')
 const messageTemplate = document.getElementById('messageTemplate').innerHTML
 
+const autoScroll = () => {
+    const newMessage = messages.lastElementChild
+
+    const newMessageMargin = parseInt(getComputedStyle(newMessage).marginBottom)
+    const newMessageHeight = newMessage.offsetHeight + newMessageMargin
+
+    const visibleHeight = messages.offsetHeight
+    const contentHeight = messages.scrollHeight
+    const scrollOffset = messages.scrollTop + visibleHeight
+
+    if (contentHeight - newMessageHeight <= scrollOffset) {
+        messages.scrollTop = messages.scrollHeight
+    }
+}
+
 // Socket message event
 socket.on('message', (message) => {
-    console.log(message)
+    // console.log(message)
     const html = Mustache.render(messageTemplate, {
         username: message.username,
         message : message.text,
         createdAt : moment(message.createdAt).format('h:mm a')
     })
     messages.insertAdjacentHTML('beforeend', html)
+    autoScroll()
 })
 
 
@@ -20,19 +36,20 @@ const locationTemplate = document.getElementById('locationTemplate').innerHTML
 
 // Socket location event
 socket.on('location', (location) => {
-    console.log(location)
+    // console.log(location)
     const html = Mustache.render(locationTemplate, {
         username: location.username,
         location : location.text,
         createdAt : moment(location.createdAt).format('h:mm a')
     })
     messages.insertAdjacentHTML('beforeend', html)
+    autoScroll()
 })
 
 const sidebarTemplate = document.getElementById('sidebarTemplate').innerHTML
 
 socket.on('roomData', ({ room, users }) => {
-    console.log(room, users)
+    // console.log(room, users)
     const html = Mustache.render(sidebarTemplate, {
         room,
         users
