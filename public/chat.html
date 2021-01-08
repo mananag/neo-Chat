@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="chat">
-    <div class="chatSidebar">
+    <div id="sidebar" class="chatSidebar">
 
     </div>
     <div class="chatMain">
@@ -17,12 +17,12 @@
 
         <div class="compose">
             <form>
-                <input type="text" name="message" placeholder="Message" id="messageInput">
+                <input type="text" name="message" placeholder="Message" id="messageInput" autocomplete="off">
                 <button id="messageSubmit" type="submit">
                     Send
                 </button>
             </form>
-            <button id="send-location">
+            <button id="sendLocation">
                 Send Location
             </button>
         </div>
@@ -52,6 +52,21 @@
             </a>
         </p>
     </div>
+</script>
+<script id="sidebarTemplate" type="text/html">
+    <h2 class="roomTitle">
+        {{room}}
+    </h2>
+    <h3 class="listTitle">
+        Users
+    </h3>
+    <ul class="users">
+        {{#users}}
+            <li>
+                {{username}}
+            </li>
+        {{/users}}
+    </ul>
 </script>
 
 

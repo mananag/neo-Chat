@@ -50,10 +50,8 @@ const getUser = (id) => {
 
 // All users in room
 const getUsersInRoom = (room) => {
-    const user = users.filter((u) => {
-        return u.room === room
-    })
-    return user.username
+    room = room.trim().toLowerCase()
+    return users.filter((user) => user.room === room)
 }
 
 module.exports = {

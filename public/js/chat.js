@@ -29,6 +29,17 @@ socket.on('location', (location) => {
     messages.insertAdjacentHTML('beforeend', html)
 })
 
+const sidebarTemplate = document.getElementById('sidebarTemplate').innerHTML
+
+socket.on('roomData', ({ room, users }) => {
+    console.log(room, users)
+    const html = Mustache.render(sidebarTemplate, {
+        room,
+        users
+    })
+    document.getElementById('sidebar').innerHTML = html
+})
+
 const messageButton = document.getElementById('messageSubmit')
 const messageInput = document.getElementById('messageInput')
 
@@ -48,7 +59,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
     })
 })
 
-const locationButton = document.getElementById('send-location')
+const locationButton = document.getElementById('sendLocation')
 
 // Sending location
 locationButton.addEventListener('click', () => {
