@@ -8,6 +8,7 @@ const messageTemplate = document.getElementById('messageTemplate').innerHTML
 socket.on('message', (message) => {
     console.log(message)
     const html = Mustache.render(messageTemplate, {
+        username: message.username,
         message : message.text,
         createdAt : moment(message.createdAt).format('h:mm a')
     })
@@ -21,6 +22,7 @@ const locationTemplate = document.getElementById('locationTemplate').innerHTML
 socket.on('location', (location) => {
     console.log(location)
     const html = Mustache.render(locationTemplate, {
+        username: location.username,
         location : location.text,
         createdAt : moment(location.createdAt).format('h:mm a')
     })
@@ -67,4 +69,16 @@ locationButton.addEventListener('click', () => {
             console.log('Location Shared!!')            // Location confirmation message
         })
     })
+})
+
+const { username, room } = Qs.parse(location.search, {
+    ignoreQueryPrefix : true
+})
+
+
+socket.emit('join', {username, room}, (error) => {
+    if (error){
+        alert(error)
+        location.href = '/'
+    }
 })
