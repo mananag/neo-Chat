@@ -1,0 +1,45 @@
+.message {
+  margin-bottom: 16px;
+}
+
+.messageName {
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.messageMeta {
+  color: #777;
+  font-size: 14px;
+}
+
+.message a {
+  color: #0070CC;
+}
+
+/* Message Composition Styles */
+
+.compose {
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 16px;
+  padding: 24px;
+}
+
+.compose form {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 16px;
+}
+
+.compose input {
+  border: 1px solid #eeeeee;
+  width: 100%;
+  padding: 12px;
+  margin: 0 16px 0 0;
+  flex-grow: 1;
+}
+
+.compose button {
+  font-size: 14px;
+}

@@ -15,6 +15,12 @@ class Home extends React.Component {
         try {
             let info = localStorage.getItem('info')
             info = info.split(',')
+            let messages = localStorage.getItem('messages')
+            messages = JSON.parse(messages)
+            console.log(messages)
+            if (messages === null){
+                messages = []
+            }
             if (info) {
                 await this.setState(() => {
                         info = {
@@ -22,7 +28,7 @@ class Home extends React.Component {
                             room: info[1],
                             users: []
                         }
-                        return {info}
+                        return {info, messages}
                     },
                     () => {
 
@@ -35,6 +41,13 @@ class Home extends React.Component {
             }
         } catch (e) {
             //Do Nothing
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState.messages.length !== this.state.messages.length){
+            let json = JSON.stringify(this.state.messages)
+            localStorage.setItem('messages', json)
         }
     }
 

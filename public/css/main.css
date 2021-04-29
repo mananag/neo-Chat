@@ -14,7 +14,6 @@ input {
 
 body {
     line-height: 1.4;
-    color: #333333;
     font-family: Helvetica, Arial, sans-serif;
 }
 
@@ -26,11 +25,12 @@ label {
     display: block;
     font-size: 14px;
     margin-bottom: 8px;
-    color: #777;
+    color: #424242;
 }
 
 input {
-    border: 1px solid #eeeeee;
+    border: none;
+    border-bottom: 1px solid #828282;
     padding: 12px;
     outline: none;
 }
@@ -38,11 +38,12 @@ input {
 button {
     cursor: pointer;
     padding: 12px;
-    background: #7C5CBF;
+    background: #333333;
     border: none;
     color: white;
     font-size: 16px;
     transition: background .3s ease;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -66,8 +67,9 @@ button:disabled {
 }
 
 .centeredFormBox {
-    box-shadow: 0px 0px 17px 1px #1D1F26;
-    background: #F7F7FA;
+    box-shadow: 3px 4px 7px 5px #33333326;
+    background: white;
+    border-radius: 14px;
     padding: 24px;
     width: 250px;
 }
@@ -85,14 +87,6 @@ button:disabled {
 
 .chat {
     display: flex;
-}
-
-.chatSidebar {
-    height: 100vh;
-    color: white;
-    background: #333744;
-    width: 225px;
-    overflow-y: scroll
 }
 
 /* Chat styles */
@@ -160,7 +154,17 @@ button:disabled {
 
 /* Chat Sidebar Styles */
 
+
+.chatSidebar {
+    height: 100vh;
+    color: white;
+    background: #333744;
+    width: 225px;
+    overflow-y: scroll
+}
+
 .roomTitle {
+    margin-top: 15%;
     font-weight: 400;
     font-size: 22px;
     background: #2c2f3a;

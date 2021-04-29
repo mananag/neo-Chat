@@ -1,10 +1,15 @@
 import './App.css';
-import './css/main.css'
+import './assets/font.css'
+import './styles/styles.scss'
 import Home from "./components/Home";
+import Logo from "./components/Logo";
 
 function App() {
     return (
-        <Home />
+        <div>
+            <Logo />
+            <Home />
+        </div>
     );
 }
 

@@ -15,7 +15,7 @@ const Sidebar = ({info, handleLogout}) => {
                 })}
             </ul>
             <button type={"button"} onClick={handleLogout} >
-                Leave Room
+                Leave Room &#128512;
             </button>
         </div>
     )
