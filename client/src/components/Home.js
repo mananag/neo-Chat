@@ -113,6 +113,11 @@ class Home extends React.Component {
         window.location.href = '/'
     }
 
+    handleLogout = () => {
+        localStorage.clear()
+        window.location.href = '/'
+    }
+
     render() {
         return (
             <div >
@@ -123,6 +128,7 @@ class Home extends React.Component {
                             messages={this.state.messages}
                             sendMessage = {this.sendMessage}
                             sendLocation = {this.sendLocation}
+                            handleLogout = {this.handleLogout}
                         /> : <LoginForm handleLogin={this.handleLogin} />
                 }
             </div>

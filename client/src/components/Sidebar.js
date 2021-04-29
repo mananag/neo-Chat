@@ -1,4 +1,4 @@
-const Sidebar = ({info}) => {
+const Sidebar = ({info, handleLogout}) => {
     return (
         <div id="sidebar" className="chatSidebar">
             <h2 className="roomTitle">
@@ -14,6 +14,9 @@ const Sidebar = ({info}) => {
                     </li>)
                 })}
             </ul>
+            <button type={"button"} onClick={handleLogout} >
+                Leave Room
+            </button>
         </div>
     )
 }
