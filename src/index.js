@@ -1,5 +1,5 @@
 const path = require('path')
-const http = require('http')
+const https = require('http')
 const express = require('express')
 const socketio = require('socket.io')
 
@@ -7,15 +7,19 @@ const {getMessage} = require('./utils/messages')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
 
 const app = express()
-const server = http.createServer(app)
-const io = socketio(server)
+const server = https.createServer(app)
+const io = socketio(server, {
+    cors: {
+        origin: '*',
+    }
+})
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const publicDirectoryPath = path.join(__dirname, '../public')
 
 
 
-app.use(express.static(publicDirectoryPath))
+// app.use(express.static(publicDirectoryPath))
 
 
 io.on('connection', (socket) => {
@@ -24,14 +28,13 @@ io.on('connection', (socket) => {
 
     socket.on('join', ({username, room}, callback) => {
         const {error, user} = addUser({ id: socket.id, username, room})
-
         if (error) {
             return callback(error)
         }
 
         socket.join(user.room)
 
-        socket.emit('message', {...getMessage('Welcome!!'), username: 'Admin'})
+        socket.emit('message', {...getMessage('Welcome!!', 'message'), username: 'Admin'})
         socket.broadcast.to(room).emit('message', getMessage(`${user.username} has joined the chat!!`))
 
         io.to(user.room).emit('roomData', {
@@ -47,7 +50,7 @@ io.on('connection', (socket) => {
         const user = getUser(socket.id)
 
         if (user) {
-            io.to(user.room).emit('message', {...getMessage(message), username: user.username})
+            io.to(user.room).emit('message', {...getMessage(message, 'message'), username: user.username})
             callback('Delivered')
         }
     })
@@ -57,7 +60,7 @@ io.on('connection', (socket) => {
 
         if(user){
             const url = `https://www.google.com/maps/search/?api=1&query=${coords.latitude},${coords.longitude}`
-            io.to(user.room).emit('location', {...getMessage(url), username: user.username})
+            io.to(user.room).emit('location', {...getMessage(url, 'location'), username: user.username})
             callback()
         }
     })
